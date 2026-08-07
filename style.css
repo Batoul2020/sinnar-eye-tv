@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيون سنار | Sinnar Eyes</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Intro / Hero Video Overlay -->
+    <div id="intro" class="intro-overlay">
+        <video id="anthem-video" autoplay muted playsinline poster="poster.jpg">
+            <source src="202608071707.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        
+        <div class="intro-controls">
+            <button id="unmute-btn" class="btn-intro">🔊 تشغيل الصوت</button>
+            <button id="skip-btn" class="btn-intro btn-skip">تخطي المقدمة ✕</button>
+        </div>
+
+        <!-- Iris / Aperture Transition Layer -->
+        <div id="iris-wipe" class="iris-layer"></div>
+    </div>
+
+    <!-- Main Website Container -->
+    <div id="main-site" class="site-container hidden">
+        
+        <!-- Sticky Header Navigation -->
+        <header class="main-header">
+            <div class="header-container">
+                <div class="logo-brand">
+                    <img src="logo.png" alt="شعار عيون سنار" class="nav-logo">
+                    <span class="brand-name">عيون سنار</span>
+                </div>
+
+                <!-- Hamburger Button for Mobile -->
+                <button class="mobile-menu-toggle" id="menu-toggle" aria-label="القائمة">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li><a href="#hero" class="active">الرئيسية</a></li>
+                        <li><a href="#about-sudan">عن سنار والسودان</a></li>
+                        <li><a href="#programs">البرامج</a></li>
+                        <li><a href="#facebook-feed">آخر المنشورات</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="hero-section">
+                <div class="hero-content">
+                    <h1>منبر إعلامي شبابي مستقل يعكس هوية وتاريخ سنار</h1>
+                    <p>صوت الشباب، التنمية، والثقافة من قلب ولاية سنار إلى كل السودان والعالم.</p>
+                    <a href="#programs" class="cta-button">استكشف برامجنا</a>
+                </div>
+            </section>
+
+            <!-- Leaderboard Ad Slot (Top) -->
+            <div class="ad-container ad-leaderboard">
+                <div class="ad-placeholder">
+                    <span>إعلان / Advertisement</span>
+                </div>
+            </div>
+
+            <!-- About Sinnar & Sudan Section -->
+            <section id="about-sudan" class="content-section">
+                <div class="section-title">
+                    <h2>عن سنار والسودان</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <img src="sinnar-dam.jpg" alt="خزان سنار" class="card-img">
+                        <h3>خزان سنار العريق</h3>
+                        <p>شريان الزراعة والحضارة، يقف خزان سنار شاهدًا على تاريخ المزارع السوداني وعظمة الإنتاج في ولاية سنار التاريخية.</p>
+                    </div>
+                    <div class="about-card">
+                        <img src="sudan-sinnar-map.jpg" alt="موقع ولاية سنار في خريطة السودان" class="card-img">
+                        <h3>قلب السودان النابض</h3>
+                        <p>تتمتع سنار بموقع استراتيجي وثقل تاريخي وزراعي يربط بين مختلف أقاليم السودان، وتُعد مهد السلطنة الزرقاء.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mid Content In-Feed Ad Slot -->
+            <div class="ad-container ad-infeed">
+                <div class="ad-placeholder">
+                    <span>مساحة إعلانية / Sponsored</span>
+                </div>
+            </div>
+
+            <!-- Programs Grid Section -->
+            <section id="programs" class="content-section bg-light">
+                <div class="section-title">
+                    <h2>برامج القناة</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="programs-grid">
+                    <article class="program-card">
+                        <div class="program-icon">🎙️</div>
+                        <h3>صوت الشباب</h3>
+                        <p>منصة تُبرز إبداعات وطاقات الشباب في مجالات الثقافة، التقنية، والمبادرات المجتمعية.</p>
+                    </article>
+                    <article class="program-card">
+                        <div class="program-icon">🌾</div>
+                        <h3>خيرات سنار</h3>
+                        <p>تغطيات ميدانية خاصة للقطاع الزراعي، الإنتاج الحيواني، والمقومات الاقتصادية للولاية.</p>
+                    </article>
+                    <article class="program-card">
+                        <div class="program-icon">📜</div>
+                        <h3>من ذاكرة السلطنة</h3>
+                        <p>سلسلة توثيقية لاستعراض تاريخ سنار الممتد وإرثها الثقافي والاجتماعي.</p>
+                    </article>
+                    <article class="program-card">
+                        <div class="program-icon">📢</div>
+                        <h3>نبض الشارع</h3>
+                        <p>متابعات وقضايا خدمية واجتماعية تعكس تطلعات وآراء المواطنين بكل شفافية.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Facebook Embed Slideshow Section -->
+            <section id="facebook-feed" class="content-section">
+                <div class="section-title">
+                    <h2>تابعنا على فيسبوك</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="facebook-embed-wrapper">
+                    <div class="fb-slide active">
+                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61579294248464&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
+                            width="100%" 
+                            height="500" 
+                            style="border:none;overflow:hidden" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Affiliate / Sponsor Section -->
+            <section class="sponsors-section">
+                <div class="sponsors-container">
+                    <h3>شركاء النجاح والرعاية</h3>
+                    <div class="sponsors-grid">
+                        <div class="sponsor-box">رعاة القناة</div>
+                        <div class="sponsor-box">روابط عروض مميزة</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Section -->
+        <footer id="contact" class="main-footer">
+            <div class="footer-container">
+                <div class="footer-info">
+                    <img src="logo.png" alt="شعار عيون سنار" class="footer-logo">
+                    <h3>عيون سنار</h3>
+                    <p>عينك على الحقيقة والإبداع في ولاية سنار والسودان.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p>📞 هاتف / واتساب: <a href="tel:+249111327142" dir="ltr">+249 111 327 142</a></p>
+                </div>
+                <div class="footer-social">
+                    <h4>تابعنا على المنصات</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61579294248464" target="_blank" rel="noopener">فيسبوك</a>
+                        <a href="#">يوتيوب</a>
+                        <a href="#">إنستغرام</a>
+                        <a href="#">تيك توك</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2026 لقناة عيون سنار</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
