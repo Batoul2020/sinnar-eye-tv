@@ -1,199 +1,441 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عيون سنار | Sinnar Eyes</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* Color Palette Variables */
+:root {
+    --primary-blue: #0170BF;
+    --primary-green: #3B7A02;
+    --dark-bg: #0F172A;
+    --light-bg: #F8FAFC;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    --white: #FFFFFF;
+    --border-color: #E2E8F0;
+    --font-heading: 'Almarai', sans-serif;
+    --font-body: 'Tajawal', sans-serif;
+}
 
-    <!-- Intro / Hero Video Overlay -->
-    <div id="intro" class="intro-overlay">
-        <video id="anthem-video" autoplay muted playsinline poster="poster.jpg">
-            <source src="202608071707.mp4" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
-        
-        <div class="intro-controls">
-            <button id="unmute-btn" class="btn-intro">🔊 تشغيل الصوت</button>
-            <button id="skip-btn" class="btn-intro btn-skip">تخطي المقدمة ✕</button>
-        </div>
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        <!-- Iris / Aperture Transition Layer -->
-        <div id="iris-wipe" class="iris-layer"></div>
-    </div>
+html {
+    scroll-behavior: smooth;
+}
 
-    <!-- Main Website Container -->
-    <div id="main-site" class="site-container hidden">
-        
-        <!-- Sticky Header Navigation -->
-        <header class="main-header">
-            <div class="header-container">
-                <div class="logo-brand">
-                    <img src="logo.png" alt="شعار عيون سنار" class="nav-logo">
-                    <span class="brand-name">عيون سنار</span>
-                </div>
+body {
+    font-family: var(--font-body);
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-                <!-- Hamburger Button for Mobile -->
-                <button class="mobile-menu-toggle" id="menu-toggle" aria-label="القائمة">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+/* Intro Video Overlay Section */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-                <nav class="main-nav" id="main-nav">
-                    <ul>
-                        <li><a href="#hero" class="active">الرئيسية</a></li>
-                        <li><a href="#about-sudan">عن سنار والسودان</a></li>
-                        <li><a href="#programs">البرامج</a></li>
-                        <li><a href="#facebook-feed">آخر المنشورات</a></li>
-                        <li><a href="#contact">تواصل معنا</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+#anthem-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        <main>
-            <!-- Hero Section -->
-            <section id="hero" class="hero-section">
-                <div class="hero-content">
-                    <h1>منبر إعلامي شبابي مستقل يعكس هوية وتاريخ سنار</h1>
-                    <p>صوت الشباب، التنمية، والثقافة من قلب ولاية سنار إلى كل السودان والعالم.</p>
-                    <a href="#programs" class="cta-button">استكشف برامجنا</a>
-                </div>
-            </section>
+.intro-controls {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 10001;
+}
 
-            <!-- Leaderboard Ad Slot (Top) -->
-            <div class="ad-container ad-leaderboard">
-                <div class="ad-placeholder">
-                    <span>إعلان / Advertisement</span>
-                </div>
-            </div>
+.btn-intro {
+    padding: 12px 24px;
+    background: rgba(1, 112, 191, 0.85);
+    color: var(--white);
+    border: 2px solid var(--white);
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
 
-            <!-- About Sinnar & Sudan Section -->
-            <section id="about-sudan" class="content-section">
-                <div class="section-title">
-                    <h2>عن سنار والسودان</h2>
-                    <div class="title-underline"></div>
-                </div>
-                <div class="about-grid">
-                    <div class="about-card">
-                        <img src="sinnar-dam.jpg" alt="خزان سنار" class="card-img">
-                        <h3>خزان سنار العريق</h3>
-                        <p>شريان الزراعة والحضارة، يقف خزان سنار شاهدًا على تاريخ المزارع السوداني وعظمة الإنتاج في ولاية سنار التاريخية.</p>
-                    </div>
-                    <div class="about-card">
-                        <img src="sudan-sinnar-map.jpg" alt="موقع ولاية سنار في خريطة السودان" class="card-img">
-                        <h3>قلب السودان النابض</h3>
-                        <p>تتمتع سنار بموقع استراتيجي وثقل تاريخي وزراعي يربط بين مختلف أقاليم السودان، وتُعد مهد السلطنة الزرقاء.</p>
-                    </div>
-                </div>
-            </section>
+.btn-intro:hover {
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+}
 
-            <!-- Mid Content In-Feed Ad Slot -->
-            <div class="ad-container ad-infeed">
-                <div class="ad-placeholder">
-                    <span>مساحة إعلانية / Sponsored</span>
-                </div>
-            </div>
+.btn-skip {
+    background: rgba(0, 0, 0, 0.6);
+}
 
-            <!-- Programs Grid Section -->
-            <section id="programs" class="content-section bg-light">
-                <div class="section-title">
-                    <h2>برامج القناة</h2>
-                    <div class="title-underline"></div>
-                </div>
-                <div class="programs-grid">
-                    <article class="program-card">
-                        <div class="program-icon">🎙️</div>
-                        <h3>صوت الشباب</h3>
-                        <p>منصة تُبرز إبداعات وطاقات الشباب في مجالات الثقافة، التقنية، والمبادرات المجتمعية.</p>
-                    </article>
-                    <article class="program-card">
-                        <div class="program-icon">🌾</div>
-                        <h3>خيرات سنار</h3>
-                        <p>تغطيات ميدانية خاصة للقطاع الزراعي، الإنتاج الحيواني، والمقومات الاقتصادية للولاية.</p>
-                    </article>
-                    <article class="program-card">
-                        <div class="program-icon">📜</div>
-                        <h3>من ذاكرة السلطنة</h3>
-                        <p>سلسلة توثيقية لاستعراض تاريخ سنار الممتد وإرثها الثقافي والاجتماعي.</p>
-                    </article>
-                    <article class="program-card">
-                        <div class="program-icon">📢</div>
-                        <h3>نبض الشارع</h3>
-                        <p>متابعات وقضايا خدمية واجتماعية تعكس تطلعات وآراء المواطنين بكل شفافية.</p>
-                    </article>
-                </div>
-            </section>
+/* Iris Aperture Transition Effect */
+.iris-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-bg);
+    pointer-events: none;
+    z-index: 10000;
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
 
-            <!-- Facebook Embed Slideshow Section -->
-            <section id="facebook-feed" class="content-section">
-                <div class="section-title">
-                    <h2>تابعنا على فيسبوك</h2>
-                    <div class="title-underline"></div>
-                </div>
-                <div class="facebook-embed-wrapper">
-                    <div class="fb-slide active">
-                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61579294248464&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
-                            width="100%" 
-                            height="500" 
-                            style="border:none;overflow:hidden" 
-                            scrolling="no" 
-                            frameborder="0" 
-                            allowfullscreen="true" 
-                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                        </iframe>
-                    </div>
-                </div>
-            </section>
+.iris-open {
+    clip-path: circle(150% at 50% 50%);
+}
 
-            <!-- Affiliate / Sponsor Section -->
-            <section class="sponsors-section">
-                <div class="sponsors-container">
-                    <h3>شركاء النجاح والرعاية</h3>
-                    <div class="sponsors-grid">
-                        <div class="sponsor-box">رعاة القناة</div>
-                        <div class="sponsor-box">روابط عروض مميزة</div>
-                    </div>
-                </div>
-            </section>
-        </main>
+.hidden {
+    display: none !important;
+}
 
-        <!-- Footer Section -->
-        <footer id="contact" class="main-footer">
-            <div class="footer-container">
-                <div class="footer-info">
-                    <img src="logo.png" alt="شعار عيون سنار" class="footer-logo">
-                    <h3>عيون سنار</h3>
-                    <p>عينك على الحقيقة والإبداع في ولاية سنار والسودان.</p>
-                </div>
-                <div class="footer-contact">
-                    <h4>تواصل معنا</h4>
-                    <p>📞 هاتف / واتساب: <a href="tel:+249111327142" dir="ltr">+249 111 327 142</a></p>
-                </div>
-                <div class="footer-social">
-                    <h4>تابعنا على المنصات</h4>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61579294248464" target="_blank" rel="noopener">فيسبوك</a>
-                        <a href="#">يوتيوب</a>
-                        <a href="#">إنستغرام</a>
-                        <a href="#">تيك توك</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>جميع الحقوق محفوظة &copy; 2026 لقناة عيون سنار</p>
-            </div>
-        </footer>
+/* Sticky Header & Nav */
+.main-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+}
 
-    </div>
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo {
+    height: 48px;
+    width: auto;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--primary-blue);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    height: 3px;
+    width: 100%;
+    background-color: var(--primary-blue);
+    border-radius: 3px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: var(--primary-blue);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    color: var(--white);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--white);
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--dark-bg);
+    color: var(--white);
+}
+
+/* Ads Containers */
+.ad-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.ad-placeholder {
+    width: 100%;
+    min-height: 90px;
+    background-color: #E2E8F0;
+    border: 1px dashed var(--text-muted);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+/* Section Common Styles */
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.bg-light {
+    background-color: var(--white);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-green);
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.about-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.about-card h3 {
+    font-family: var(--font-heading);
+    padding: 15px 20px 5px;
+    color: var(--primary-blue);
+}
+
+.about-card p {
+    padding: 0 20px 20px;
+    color: var(--text-muted);
+}
+
+/* Programs Grid */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.program-card {
+    background: var(--light-bg);
+    padding: 25px 20px;
+    border-radius: 10px;
+    border-right: 4px solid var(--primary-green);
+    transition: transform 0.3s ease;
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+}
+
+.program-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.program-card h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+}
+
+/* Facebook Embed */
+.facebook-embed-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* Sponsors / Affiliate */
+.sponsors-section {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.sponsors-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.sponsor-box {
+    padding: 15px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #090D16;
+    color: var(--white);
+    padding-top: 50px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.footer-contact a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+
+    .main-nav.open {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
